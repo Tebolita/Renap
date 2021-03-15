@@ -60,3 +60,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Importante
+
+Para iniciar sesion en el Login de administrador debe gener un usuario administrador con los seeders, el usuario se encuentra en la tabla ----users---

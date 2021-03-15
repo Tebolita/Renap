@@ -55,9 +55,7 @@ class AdministradorController extends Controller
 
 
     public function update($id){
-
       $solicitud =  Solicitude::find($id);
-
       switch($solicitud->status){
         case "Solicitado":
           $solicitud->status = "En proceso";
@@ -69,15 +67,46 @@ class AdministradorController extends Controller
         case "En proceso":
         $solicitud->status = "Listo para entregar";
         $solicitud->save(); 
-        Log::debug('AdministradorUpdate:: Actualizacion del dato status del campo Status de la tabla Solicitudes, Se envio un email notificando al usuario' );
-        $email = new NotiMails;
-        Mail::to($solicitud->email)->send($email);
-        
+        Log::debug('AdministradorUpdate:: Actualizacion del dato status del campo Status de la tabla Solicitudes');
         return redirect()->route('admin.index');
+        break;
+
+        case "Listo para entregar":
+          $email = new NotiMails;
+          Mail::to($solicitud->email)->send($email);
+          Log::debug('AdministradorUpdate:: Se envio el correo electronico designado' );
+          return redirect()->route('admin.index')->with('info', 'Se ha enviado un email al usuario para notificarle!!');
         break;
 
       }
     }
+
+    public function refresh($id){
+
+
+      $solicitud =  Solicitude::find($id);
+
+
+      switch($solicitud->status){
+        case "En proceso":
+          $solicitud->status = "Solicitado";
+          $solicitud->save();
+          Log::debug('AdministradorUpdate:: Actualizacion del dato status del campo Status de la tabla Solicitudes');
+          return redirect()->route('admin.index');
+        break;
+
+        case "Listo para entregar":
+        $solicitud->status = "En proceso";
+        $solicitud->save(); 
+        Log::debug('AdministradorUpdate:: Actualizacion del dato status del campo Status de la tabla Solicitudes, Se envio un email notificando al usuario' );
+        $email = new NotiMails;
+        Mail::to($solicitud->email)->send($email);
+        return redirect()->route('admin.index');
+        break;
+
+    }
+  }
+
 
       public function logout(Request $request){
 

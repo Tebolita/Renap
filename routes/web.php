@@ -33,8 +33,10 @@ Route::get('/', AdministradorController::class)->middleware('auth')->name('index
 Route::get('/login', [AdministradorController::class, 'login'])->name('login')->middleware('guest');
 //Rutas normalitas
 Route::post('/login', [AdministradorController::class, 'credenciales'])->name('credenciales');
-Route::get('/update/{id}', [AdministradorController::class, 'update'])->name('update');
+Route::get('/update/{id}', [AdministradorController::class, 'update'])->name('update'); 
 Route::post('/logout', [AdministradorController::class, 'logout'])->name('logout');
+Route::get('/refresh/{id}', [AdministradorController::class, 'refresh'])->name('refresh'); 
+
 });
 
 
