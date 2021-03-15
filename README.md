@@ -64,4 +64,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Importante
 
-Para iniciar sesion en el Login de administrador debe generar un usuario administrador con los seeders, el usuario se encuentra en la tabla ----users--- y necesita su contraseña y email
+Para iniciar sesion en el Login de administrador debe generar un usuario administrador con los seeders, el usuario se encuentra en la tabla ----users--- coloque el email que esta en la tabla y como password escriba password
